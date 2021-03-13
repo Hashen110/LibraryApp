@@ -8,6 +8,8 @@ target 'LibraryApp' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
+
   target 'LibraryAppTests' do
     inherit! :complete
     # Pods for testing

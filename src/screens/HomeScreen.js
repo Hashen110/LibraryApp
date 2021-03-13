@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, SafeAreaView, ScrollView, StatusBar, Button, View } from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 export default class HomeScreen extends Component {
     constructor(props) {
@@ -16,6 +17,20 @@ export default class HomeScreen extends Component {
             ]
         };
     }
+
+    signOut() {
+
+    }
+
+    async googleSignOut() {
+        try {
+            await GoogleSignin.revokeAccess();
+            await GoogleSignin.signOut();
+          } catch (error) {
+            console.error(error);
+          }
+    }
+
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -25,8 +40,12 @@ export default class HomeScreen extends Component {
                         <Rows data={this.state.tableData} textStyle={styles.text} />
                     </Table>
                     <View style={styles.btnContainer}>
-                            <Button title="Insert a book" onPress={() => this.props.navigation.navigate('InsertBook')} />
-                        </View>
+                        <Button title="Insert a book" onPress={() => this.props.navigation.navigate('InsertBook')} />
+                    </View>
+                    <View style={styles.btnContainer1}>
+                        <Button title="Sign Out" onPress={() => this.signOut()} />
+                        <Button title="Google Sign Out" onPress={() => this.googleSignOut()} />
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         );
@@ -45,6 +64,10 @@ const styles = StyleSheet.create({
     text: { margin: 6 },
     btnContainer: {
         backgroundColor: "white",
-        marginTop: 12
+        marginTop: 15
+    },
+    btnContainer1: {
+        backgroundColor: "white",
+        marginTop: 30
     },
 });

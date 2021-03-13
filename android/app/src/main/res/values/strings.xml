@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LibraryApp</string>
+    <string name="facebook_app_id">780874286171814</string>
+
 </resources>
